@@ -18,7 +18,7 @@ npm install --save redux-api-manager
 ```javascript
 import API from 'redux-api-manager';
 
-let api = new API({url: 'http://127.0.0.1:3333'})
+let api = new API({url: 'http://api.awesome.com'})
 
 //Create endpoint
 let companyEndpoint = api.endpoint('companies')
