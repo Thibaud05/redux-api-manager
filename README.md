@@ -10,9 +10,19 @@
 npm install --save redux-api-manager
 ```
 
+## FSA actions
+
+This project use [Flux Standard Action](https://github.com/redux-utilities/flux-standard-action)
+
+```javascript
+{
+  type:'REDUX_ACTION_TYPE'
+  payload:{'object return by the route'},
+  error:false
+}
+```
+
 ## Usage
-
-
 ### create, update, read and delete a ressource
 
 ```javascript
