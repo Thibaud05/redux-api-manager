@@ -56,18 +56,23 @@ let companyLeaders = api.endpoint('leaders')
 companyLeaders.nested('companies',1)
 
 companyLeaders.create({name:'Larry Page'})
-// HTTPS POST api.awesome.com/companies/1/leaders and dispatch CREATE_LEADERS
+// HTTPS POST api.awesome.com/companies/1/leaders and dispatch CREATE_COMPANIES_LEADERS
 
 companyLeaders.update({id:1,name:'Sundar Pichai'})
-// HTTPS PUT api.awesome.com/companies/1/leaders and dispatch UPDATE_LEADERS
+// HTTPS PUT api.awesome.com/companies/1/leaders and dispatch UPDATE_COMPANIES_LEADERS
 
 companyLeaders.read()
-// HTTPS GET api.awesome.com/companies/1/leaders, dispatch REQUEST_LEADERS and RECEIVE_LEADERS
+// HTTPS GET api.awesome.com/companies/1/leaders, dispatch REQUEST_COMPANIES_LEADERS and RECEIVE_COMPANIES_LEADERS
 
 companyLeaders.delete(1)
-// HTTPS DELETE api.awesome.com/companies/1/leaders/1 and dispatch REMOVE_LEADERS
+// HTTPS DELETE api.awesome.com/companies/1/leaders/1 and dispatch REMOVE_COMPANIES_LEADERS
 ```
 
+### Nested route without params
+```javascript
+api.endpoint('top5').nested('companies').read()
+// HTTPS GET api.awesome.com/companies/top5, dispatch REQUEST_COMPANIES_TOP5 and RECEIVE_COMPANIES_TOP5
+```
 ### File upload
 ```javascript
 let companyEndpoint = api.endpoint('companies')
