@@ -35,7 +35,16 @@ class Endpoint
      */
     nested(resourceName,resourceId)
     {
-        this.ressourceUrl = this.url + resourceName + '/' + resourceId + '/' + this.resourceName + '/'
+      this.ressourceUrl = this.url + resourceName + '/'
+      if(resourceId){
+        this.ressourceUrl += resourceId + '/'
+      }
+      this.ressourceUrl += this.resourceName + '/'
+
+      this.resourceName = resourceName + '_' + this.resourceName
+
+      // Re-build actions
+      this.actions = new Actions(this.resourceName)
     }
     /**
      * Get and store the auth token
