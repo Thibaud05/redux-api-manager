@@ -56,7 +56,7 @@ authEndpoint.login(credential)
 
 let companyEndpoint = api.endpoint('companies')
 companyEndpoint.auth()
-companyEndpoint.get()
+companyEndpoint.read()
 // HTTPS GET api.awesome.com/companies, dispatch REQUEST_COMPANIES and RECEIVE_COMPANIES
 ```
 
