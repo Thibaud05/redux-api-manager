@@ -128,7 +128,7 @@ describe('TEST REST API CRUD', () => {
 
     const store = mockStore()
     return store.dispatch(leadersEndpoint.read()).then(() => {
-      expect(store.getActions()).toEqual([expectedActions])
+      expect(store.getActions()).toEqual(expectedActions)
     })
   });
 
