@@ -108,11 +108,37 @@ describe('TEST REST API CRUD', () => {
         })
     })
 
-    it('nested()', () => {
+    it('nested', () => {
         let leadersEndpoint = testApi.endpoint('leaders')
         leadersEndpoint.nested('companies',1)
         expect(leadersEndpoint.ressourceUrl).toBe('http://127.0.0.1:3333/companies/1/leaders/');
     });
+
+  it('nested action', () => {
+    let leadersEndpoint = testApi.endpoint('leaders')
+    leadersEndpoint.nested('companies',1)
+
+    fetchMock
+    .getOnce(leadersEndpoint.ressourceUrl, { body: { companies: ['do something'] }, headers: { 'content-type': 'application/json' } })
+
+    const expectedActions = [
+      { type: 'REQUEST_COMPANIES_LEADERS', loading: true  },
+      { type: 'RECEIVE_COMPANIES_LEADERS', data: { companies: ['do something'] }, loading: false }
+    ]
+
+    const store = mockStore()
+    return store.dispatch(leadersEndpoint.read()).then(() => {
+      expect(store.getActions()).toEqual([expectedActions])
+    })
+  });
+
+
+  it('nested without params', () => {
+    let leadersEndpoint = testApi.endpoint('leaders')
+    leadersEndpoint.nested('companies')
+    expect(leadersEndpoint.ressourceUrl).toBe('http://127.0.0.1:3333/companies/leaders/');
+  });
+
 
     it('auth()', () => {
         let leadersEndpoint = testApi.endpoint('leaders')
