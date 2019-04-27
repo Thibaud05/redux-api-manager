@@ -4,13 +4,12 @@ import Endpoint from './Endpoint'
 class API {
   constructor (config) {
     this.config = {url: '', version: ''}
+    if (!config || !config.url) {
+      throw new Error('The API required an url')
+    }
+    this.config.url = config.url
     if (config.version) {
       this.config.version = config.version
-    }
-    if (config.url) {
-      this.config.url = config.url
-    } else {
-      throw new Error('The API required an url')
     }
   }
 
