@@ -5,7 +5,10 @@ import Actions from './Actions'
 class Endpoint {
   /**
    * Create a resource
-   * @param  {string} resourceName - the name of the REST resource
+   * @param  {string} resourceName - The name of the REST resource
+   * @param  {object} config - The API configuration
+   * @param  {string} config.url - The API url
+   * @param  {string} config.version - The API version
    */
   constructor (resourceName, config) {
     this.resourceName = resourceName
