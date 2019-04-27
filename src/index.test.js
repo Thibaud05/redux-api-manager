@@ -13,7 +13,7 @@ global.localStorage = new LocalStorageMock
 
 const token = 'cK.Jf5L_KD6ddsd=s5'
 
-describe('TEST REST API CRUD', () => {
+describe('TEST API', () => {
   let testApi = new API({url: 'http://127.0.0.1:3333'})
   let companiesEndpoint = testApi.endpoint('companies')
 
@@ -167,6 +167,15 @@ describe('TEST REST API CRUD', () => {
     leadersEndpoint.nested('companies')
     expect(leadersEndpoint.ressourceUrl)
       .toBe('http://127.0.0.1:3333/companies/leaders/')
+  })
+})
+
+describe('TEST API WITH AUTH', () => {
+  let testApi = new API({url: 'http://127.0.0.1:3333'})
+
+  afterEach(() => {
+    fetchMock.reset()
+    fetchMock.restore()
   })
 
   it('auth()', () => {
