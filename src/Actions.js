@@ -16,8 +16,8 @@ class Actions {
   errorResource (data) {
     return {
       type: 'ERROR' + this.resourceType,
-      data: data,
-      loading: false
+      payload: data,
+      error: true
     }
   }
 
@@ -28,7 +28,7 @@ class Actions {
   requestResource () {
     return {
       type: 'REQUEST' + this.resourceType,
-      loading: true
+      error: false
     }
   }
 
@@ -40,8 +40,8 @@ class Actions {
   receiveResource (resources) {
     return {
       type: 'RECEIVE' + this.resourceType,
-      data: resources,
-      loading: false
+      payload: resources,
+      error: false
     }
   }
 
@@ -53,7 +53,8 @@ class Actions {
   addResourceSuccess (resource) {
     return {
       type: 'CREATE' + this.resourceType,
-      payload: resource
+      payload: resource,
+      error: false
     }
   }
 
@@ -65,7 +66,8 @@ class Actions {
   updateResourceSuccess (resource) {
     return {
       type: 'UPDATE' + this.resourceType,
-      payload: resource
+      payload: resource,
+      error: false
     }
   }
 
@@ -77,7 +79,8 @@ class Actions {
   deleteResourceSuccess (id) {
     return {
       type: 'REMOVE' + this.resourceType,
-      payload: id
+      payload: id,
+      error: false
     }
   }
 }
