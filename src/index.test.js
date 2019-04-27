@@ -237,12 +237,12 @@ describe('TEST API WITH AUTH', () => {
     const expectedActions = [
       {
         type: 'REQUEST_COMPANIES',
-        loading: true
+        error: false
       },
       {
         type: 'RECEIVE_COMPANIES',
-        data: {companies: ['do something']},
-        loading: false
+        payload: {companies: ['do something']},
+        error: false
       }
     ]
     const store = mockStore()
