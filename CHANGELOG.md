@@ -1,3 +1,6 @@
+## [Unreleased]
+### Added
+- SPA compliant
 ## [1.1.0] - 2019-04-23
 ### Added
 - CHANGELOG file
