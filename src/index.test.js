@@ -28,6 +28,10 @@ describe('TEST REST API CRUD', () => {
       .toBe('http://127.0.0.1:3333/companies/')
   })
 
+  it('constructor need url', () => {
+    expect(() => { new API({}) }).toThrowError('The API required an url');
+  })
+
   it('read()', () => {
     fetchMock.getOnce(companiesEndpoint.ressourceUrl, {
       body: {companies: ['do something']},
