@@ -41,12 +41,12 @@ describe('TEST API', () => {
     const expectedActions = [
       {
         type: 'REQUEST_COMPANIES',
-        loading: true
+        error: false
       },
       {
         type: 'RECEIVE_COMPANIES',
-        data: {companies: ['do something']},
-        loading: false
+        payload: {companies: ['do something']},
+        error: false
       }
     ]
     const store = mockStore()
@@ -77,7 +77,11 @@ describe('TEST API', () => {
       .then(() => {
         expect(store.getActions())
           .toEqual(
-            [{type: 'CREATE_COMPANIES', payload: {id: 1, name: 'Amazon'}}])
+            [{
+              type: 'CREATE_COMPANIES',
+              payload: {id: 1, name: 'Amazon'},
+              error: false
+            }])
       })
   })
 
@@ -102,7 +106,11 @@ describe('TEST API', () => {
       .then(() => {
         expect(store.getActions())
           .toEqual(
-            [{type: 'UPDATE_COMPANIES', payload: {id: 1, name: 'Google'}}])
+            [{
+              type: 'UPDATE_COMPANIES',
+              payload: {id: 1, name: 'Google'},
+              error: false
+            }])
       })
   })
 
@@ -124,7 +132,11 @@ describe('TEST API', () => {
 
     return store.dispatch(companiesEndpoint.delete(1)).then(() => {
       expect(store.getActions())
-        .toEqual([{type: 'REMOVE_COMPANIES', payload: 1}])
+        .toEqual([{
+          type: 'REMOVE_COMPANIES',
+          payload: 1,
+          error: false
+        }])
     })
   })
 
@@ -147,12 +159,12 @@ describe('TEST API', () => {
     const expectedActions = [
       {
         type: 'REQUEST_COMPANIES_LEADERS',
-        loading: true
+        error: false
       },
       {
         type: 'RECEIVE_COMPANIES_LEADERS',
-        data: {companies: ['do something']},
-        loading: false
+        payload: {companies: ['do something']},
+        error: false
       }
     ]
 
@@ -206,8 +218,8 @@ describe('TEST API WITH AUTH', () => {
       authEndpoint.login({email: 'e@mail.com', password: 'secret'}))
       .then(() => {
         const actions = [
-          {type: 'REQUEST_LOGIN', loading: true},
-          {type: 'RECEIVE_LOGIN', loading: false, data: {isLogged: true}}
+          {type: 'REQUEST_LOGIN', error: false},
+          {type: 'RECEIVE_LOGIN', payload: {isLogged: true}, error: false}
         ]
         expect(store.getActions()).toEqual(actions)
       })
@@ -264,7 +276,8 @@ describe('TEST API WITH AUTH', () => {
       .then(() => {
         expect(store.getActions()).toEqual([{
           type: 'CREATE_COMPANIES',
-          payload: {id: 1, name: 'Amazon'}
+          payload: {id: 1, name: 'Amazon'},
+          error: false
         }])
       })
   })
@@ -293,7 +306,8 @@ describe('TEST API WITH AUTH', () => {
       .then(() => {
         expect(store.getActions()).toEqual([{
           type: 'UPDATE_COMPANIES',
-          payload: {id: 1, name: 'Google'}
+          payload: {id: 1, name: 'Google'},
+          error: false
         }])
       })
   })
@@ -320,7 +334,8 @@ describe('TEST API WITH AUTH', () => {
     return store.dispatch(withAuthEndpoint.delete(1)).then(() => {
       expect(store.getActions()).toEqual([{
         type: 'REMOVE_COMPANIES',
-        payload: 1
+        payload: 1,
+        error: false
       }])
     })
   })
