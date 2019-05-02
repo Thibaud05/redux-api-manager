@@ -225,6 +225,28 @@ describe('TEST API WITH AUTH', () => {
       })
   })
 
+  it('login with error 401', () => {
+    let authEndpoint = testApi.endpoint('login')
+
+    fetchMock.postOnce(authEndpoint.ressourceUrl, {
+      body: [{'field': 'password','message': 'Invalid user password'}],
+      headers: {'content-type': 'application/json'},
+      status: 404
+    })
+
+    const store = mockStore()
+
+    return store.dispatch(
+      authEndpoint.login({email: 'e@mail.com', password: 'secret'}))
+      .then(() => {
+        const actions = [
+          {type: 'REQUEST_LOGIN', error: false},
+          {type: 'ERROR_LOGIN', payload: {'field': 'password','message': 'Invalid user password'}, error: true}
+        ]
+        expect(store.getActions()).toEqual(actions)
+      })
+  })
+
   let withAuthEndpoint = testApi.endpoint('companies')
   withAuthEndpoint.auth()
 
