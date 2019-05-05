@@ -1,6 +1,7 @@
-## [Unreleased]
+## [1.1.1] - 2019-05-05
 ### Added
-- SPA compliant
+- SPA compliant (use payload instead data)
+- Endpoint.renameAction() for Rename the redux action
 ## [1.1.0] - 2019-04-23
 ### Added
 - CHANGELOG file
