@@ -83,6 +83,13 @@ companyLeaders.delete(1)
 api.endpoint('top5').nested('companies').read()
 // HTTPS GET api.awesome.com/companies/top5, dispatch REQUEST_COMPANIES_TOP5 and RECEIVE_COMPANIES_TOP5
 ```
+
+### Rename Redux action
+```javascript
+api.endpoint('companies').renameAction('COMPANIES_DETAILS').read(1)
+// HTTPS GET api.awesome.com/companies/1, dispatch REQUEST_COMPANIES_DETAILS and RECEIVE_COMPANIES_DETAILS
+```
+
 ### File upload
 ```javascript
 let companyEndpoint = api.endpoint('companies')
