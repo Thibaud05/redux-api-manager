@@ -180,6 +180,33 @@ describe('TEST API', () => {
     expect(leadersEndpoint.ressourceUrl)
       .toBe('http://127.0.0.1:3333/companies/leaders/')
   })
+
+  it('rename Redux action', () => {
+    let leadersEndpoint = testApi.endpoint('leaders')
+    leadersEndpoint.renameAction('COMPANIES_DETAIS')
+
+    fetchMock.getOnce(leadersEndpoint.ressourceUrl, {
+      body: {companies: ['do something']},
+      headers: {'content-type': 'application/json'}
+    })
+
+    const expectedActions = [
+      {
+        type: 'REQUEST_COMPANIES_DETAIS',
+        error: false
+      },
+      {
+        type: 'RECEIVE_COMPANIES_DETAIS',
+        payload: {companies: ['do something']},
+        error: false
+      }
+    ]
+
+    const store = mockStore()
+    return store.dispatch(leadersEndpoint.read()).then(() => {
+      expect(store.getActions()).toEqual(expectedActions)
+    })
+  })
 })
 
 describe('TEST API WITH AUTH', () => {
