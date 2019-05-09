@@ -175,15 +175,13 @@ describe('TEST API', () => {
   })
 
   it('nested without params', () => {
-    let leadersEndpoint = testApi.endpoint('leaders')
-    leadersEndpoint.nested('companies')
+    let leadersEndpoint = testApi.endpoint('leaders').nested('companies')
     expect(leadersEndpoint.ressourceUrl)
       .toBe('http://127.0.0.1:3333/companies/leaders/')
   })
 
   it('rename Redux action', () => {
-    let leadersEndpoint = testApi.endpoint('leaders')
-    leadersEndpoint.renameAction('COMPANIES_DETAIS')
+    let leadersEndpoint = testApi.endpoint('leaders').renameAction('COMPANIES_DETAIS')
 
     fetchMock.getOnce(leadersEndpoint.ressourceUrl, {
       body: {companies: ['do something']},
@@ -218,8 +216,7 @@ describe('TEST API WITH AUTH', () => {
   })
 
   it('auth()', () => {
-    let leadersEndpoint = testApi.endpoint('leaders')
-    leadersEndpoint.auth()
+    let leadersEndpoint = testApi.endpoint('leaders').auth()
     expect(leadersEndpoint.useJWT).toBe(true)
   })
 

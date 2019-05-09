@@ -28,6 +28,7 @@ class Endpoint {
    */
   auth () {
     this.useJWT = true
+    return this
   }
 
   /**
@@ -36,6 +37,7 @@ class Endpoint {
    */
   renameAction (actionName) {
     this.actions = new Actions(actionName)
+    return this
   }
 
   /**
@@ -54,6 +56,7 @@ class Endpoint {
 
     // Re-build actions
     this.actions = new Actions(this.resourceName)
+    return this
   }
 
   /**
