@@ -25,6 +25,7 @@ class Endpoint {
   /**
    * Active the JWT authentication
    * Add token in the header when api make request
+   * @return {object} Endpoint
    */
   auth () {
     this.useJWT = true
@@ -34,6 +35,7 @@ class Endpoint {
   /**
    * Rename the Redux action
    *  @param  {string} actionName - the name of the Redux action
+   *  @return {object} Endpoint
    */
   renameAction (actionName) {
     this.actions = new Actions(actionName)
@@ -44,6 +46,7 @@ class Endpoint {
    * Create a nested resource
    * @param  {string} resourceName - the name of the REST resource
    * @param  {number} resourceId - the id of the REST resource
+   * @return {object} Endpoint
    */
   nested (resourceName, resourceId) {
     this.ressourceUrl = this.url + resourceName + '/'
