@@ -1,3 +1,6 @@
+## [1.1.2] - 2019-05-09
+### Fixed
+- Endpoint method chaining
 ## [1.1.1] - 2019-05-05
 ### Added
 - SPA compliant (use payload instead data)
